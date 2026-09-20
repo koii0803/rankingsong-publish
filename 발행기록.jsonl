@@ -13,3 +13,8 @@
 {"ep": "ep4_en", "lang": "en", "platform": "facebook", "ok": true, "video_id": "4616632571955463", "url": "https://www.facebook.com/reel/4616632571955463", "comment_id": null, "at": "2026-09-20T17:09:30+09:00"}
 {"ep": "ep4_en", "lang": "en", "platform": "instagram", "warn": "댓글 실패 {'error': {'message': '(#10) Application does not have permission for this action', 'type': 'OAuthException', 'code': 10, 'fbtrace_id': 'AnBsJlJBBl9F8W3tS3jpqyT'}}", "at": "2026-09-20T17:10:19+09:00"}
 {"ep": "ep4_en", "lang": "en", "platform": "instagram", "ok": true, "media_id": "18030446534675771", "comment_id": null, "at": "2026-09-20T17:10:19+09:00"}
+{"lang": "ja", "page_found": "1386246101232360", "name": "サクッとランキング歌", "at": "2026-09-20T17:26:49+09:00"}
+{"ep": "ep4_ja", "lang": "ja", "platform": "facebook", "comment_added": "1068970736017483_28191612440530238", "at": "2026-09-20T17:26:52+09:00"}
+{"ep": "ep4_ja", "lang": "ja", "platform": "instagram", "comment_added": "18107915321462915", "at": "2026-09-20T17:26:53+09:00"}
+{"ep": "ep4_en", "lang": "en", "platform": "facebook", "comment_added": "4616632571955463_1762327451743042", "at": "2026-09-20T17:26:56+09:00"}
+{"ep": "ep4_en", "lang": "en", "platform": "instagram", "comment_added": "18117323387289710", "at": "2026-09-20T17:26:58+09:00"}
