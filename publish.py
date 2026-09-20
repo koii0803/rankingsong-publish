@@ -176,6 +176,21 @@ def main():
                 it["status"] = "실패"
                 fail += 1
             log(ep=it["ep"], lang=it["lang"], platform=it["platform"], ok=False, error=it["error"], attempts=it["attempts"])
+    # 댓글 보충: 게시는 됐는데 댓글이 안 달린 페북·인스타 건 (권한 없던 때 올린 것). 게시는 안 건드림
+    for it in q:
+        if it.get("status") != "게시" or it.get("platform") not in ("facebook", "instagram") or not it.get("comment") or it.get("comment_id"):
+            continue
+        target = it.get("video_id") if it["platform"] == "facebook" else it.get("media_id")
+        if not target:
+            continue
+        try:
+            _, ptok, _ = page_token(it["lang"])
+            cid = post_comment(it, target, ptok)
+            if cid:
+                it["comment_id"] = cid
+                log(ep=it["ep"], lang=it["lang"], platform=it["platform"], comment_added=cid)
+        except Exception as e:
+            log(ep=it["ep"], lang=it["lang"], platform=it["platform"], warn="댓글 보충 실패 " + str(e)[:200])
     # R2 정리: 같은 r2_key 의 건이 전부 게시/실패이고 마지막 게시 24h 지남
     keys = {}
     for it in q:
