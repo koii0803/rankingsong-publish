@@ -1,0 +1,3 @@
+{"ep": "ep2", "lang": "ko", "platform": "youtube", "ok": false, "error": "HTTP Error 403: Forbidden", "attempts": 1, "at": "2026-09-20T13:21:34+09:00"}
+{"ep": "ep2", "lang": "ko", "platform": "facebook", "ok": true, "video_id": "1607477427425580", "url": "https://www.facebook.com/reel/1607477427425580", "at": "2026-09-20T13:21:47+09:00"}
+{"ep": "ep2", "lang": "ko", "platform": "instagram", "ok": true, "media_id": "18073313996682860", "at": "2026-09-20T13:23:14+09:00"}

@@ -11,7 +11,9 @@
   "platform": "youtube",
   "title": "손님 오면 자랑하는 휴지걸이 랭킹 TOP5 #shorts",
   "description": "[광고]\n138번 · 프로필 링크에서 확인",
-  "comment": "[광고] 제품 링크 👉 프로필 링크\n138번"
+  "comment": "[광고] 제품 링크 👉 프로필 링크\n138번",
+  "attempts": 1,
+  "error": "HTTP Error 403: Forbidden"
  },
  {
   "ep": "ep2",
@@ -19,11 +21,14 @@
   "day": "2026-09-20",
   "slot": 0,
   "publish_at": "2026-09-20T13:21+09:00",
-  "status": "대기",
+  "status": "게시",
   "r2_key": "rankingsong/ep2_ko.mp4",
   "video_url": "https://pub-71a067f62c754bb0b68600c1ca0758c9.r2.dev/rankingsong/ep2_ko.mp4",
   "platform": "facebook",
-  "text": "손님 오면 자랑하는 휴지걸이 랭킹 TOP5\n\n[광고] 138번 · 프로필 링크에서 확인"
+  "text": "손님 오면 자랑하는 휴지걸이 랭킹 TOP5\n\n[광고] 138번 · 프로필 링크에서 확인",
+  "posted_at": "2026-09-20T13:21:33+09:00",
+  "video_id": "1607477427425580",
+  "url": "https://www.facebook.com/reel/1607477427425580"
  },
  {
   "ep": "ep2",
@@ -31,10 +36,12 @@
   "day": "2026-09-20",
   "slot": 0,
   "publish_at": "2026-09-20T13:21+09:00",
-  "status": "대기",
+  "status": "게시",
   "r2_key": "rankingsong/ep2_ko.mp4",
   "video_url": "https://pub-71a067f62c754bb0b68600c1ca0758c9.r2.dev/rankingsong/ep2_ko.mp4",
   "platform": "instagram",
-  "caption": "손님 오면 자랑하는 휴지걸이 랭킹 TOP5\n\n[광고] 138번 · 프로필 링크에서 확인\n#신박템 #꿀템 #랭킹 #쇼츠"
+  "caption": "손님 오면 자랑하는 휴지걸이 랭킹 TOP5\n\n[광고] 138번 · 프로필 링크에서 확인\n#신박템 #꿀템 #랭킹 #쇼츠",
+  "posted_at": "2026-09-20T13:21:33+09:00",
+  "media_id": "18073313996682860"
  }
 ]
