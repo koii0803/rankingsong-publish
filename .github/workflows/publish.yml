@@ -1,0 +1,44 @@
+# 랭킹송 쇼츠 발행 — 30분마다 깨어나 예약표.json 의 시간 지난 건을 유튜브·페북·인스타에 게시. PC 꺼져 있어도 돈다.
+name: publish
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+concurrency:
+  group: publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q requests boto3 google-api-python-client google-auth google-auth-oauthlib
+      - name: 발행
+        env:
+          YT_TOKEN_KO: ${{ secrets.YT_TOKEN_KO }}
+          YT_TOKEN_JA: ${{ secrets.YT_TOKEN_JA }}
+          YT_TOKEN_EN: ${{ secrets.YT_TOKEN_EN }}
+          META_USER_TOKEN: ${{ secrets.META_USER_TOKEN }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          CLOUDFLARE_ACCOUNT_ID_2: ${{ secrets.CLOUDFLARE_ACCOUNT_ID_2 }}
+        run: python publish.py
+      - name: 결과 커밋
+        if: always()
+        run: |
+          git config user.name "publish"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m "발행 실행"
+          for i in 1 2 3; do
+            git pull --rebase && git push && exit 0
+            sleep 5
+          done
+          exit 1
