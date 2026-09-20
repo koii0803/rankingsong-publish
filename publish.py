@@ -11,8 +11,10 @@ KST = dt.timezone(dt.timedelta(hours=9))
 GRAPH = "https://graph.facebook.com/v21.0"
 Q = "예약표.json"
 LOG = "발행기록.jsonl"
-PAGES = {"ko": "1399063196619050", "en": "1397363193453435"}  # ja: 페이지 생기면
+PAGES = {"ko": "1399063196619050", "en": "1397363193453435"}  # ja: 아래 PAGE_NAMES로 /me/accounts에서 찾음 (2026-09-20 페이지 생김)
+PAGE_NAMES = {"ja": "サクッと"}  # PAGES에 없는 언어는 페이지 이름 일부로 찾아 채움
 CLEANUP_H = 24
+UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) rankingsong-publish"}  # r2.dev가 Python-urllib UA를 403으로 막음 (2026-09-20 실측)
 
 
 def now():
@@ -41,7 +43,11 @@ def yt_publish(it):
     from googleapiclient.http import MediaFileUpload
     yt = yt_client(it["lang"])
     fp = os.path.join(tempfile.gettempdir(), it["ep"] + ".mp4")
-    urllib.request.urlretrieve(it["video_url"], fp)
+    with requests.get(it["video_url"], headers=UA, stream=True, timeout=300) as r:
+        r.raise_for_status()
+        with open(fp, "wb") as f:
+            for chunk in r.iter_content(1024 * 1024):
+                f.write(chunk)
     body = {"snippet": {"title": it["title"][:100], "description": it["description"], "categoryId": "22", "defaultLanguage": it["lang"]},
             "status": {"privacyStatus": "public", "selfDeclaredMadeForKids": False}}
     req = yt.videos().insert(part="snippet,status", body=body, media_body=MediaFileUpload(fp, chunksize=8 * 1024 * 1024, resumable=True))
@@ -65,12 +71,33 @@ def page_token(lang):
     if not ut:
         raise RuntimeError("META_USER_TOKEN 시크릿 없음")
     pid = PAGES.get(lang)
+    if not pid and lang in PAGE_NAMES:
+        acc = requests.get(f"{GRAPH}/me/accounts", params={"fields": "id,name", "limit": 100, "access_token": ut}, timeout=30).json()
+        for p in acc.get("data", []):
+            if PAGE_NAMES[lang] in p.get("name", ""):
+                pid = PAGES[lang] = p["id"]
+                log(lang=lang, page_found=pid, name=p["name"])
+                break
     if not pid:
         raise RuntimeError(f"{lang} 페북 페이지 없음")
     r = requests.get(f"{GRAPH}/{pid}", params={"fields": "access_token,instagram_business_account", "access_token": ut}, timeout=30).json()
     if "error" in r:
         raise RuntimeError(f"페이지 토큰 {r['error']}")
     return pid, r["access_token"], (r.get("instagram_business_account") or {}).get("id")
+
+
+def post_comment(it, target_id, ptok):
+    """페북 릴스·인스타 미디어에 댓글. 실패해도 게시는 성공으로 두고 경고만 남김."""
+    if not it.get("comment"):
+        return None
+    try:
+        r = requests.post(f"{GRAPH}/{target_id}/comments", data={"message": it["comment"], "access_token": ptok}, timeout=60).json()
+        if "id" not in r:
+            raise RuntimeError(str(r)[:200])
+        return r["id"]
+    except Exception as e:
+        log(ep=it["ep"], lang=it["lang"], platform=it["platform"], warn="댓글 실패 " + str(e)[:200])
+        return None
 
 
 def fb_publish(it):
@@ -90,7 +117,8 @@ def fb_publish(it):
     f = requests.post(f"{GRAPH}/{pid}/video_reels", data={"upload_phase": "finish", "video_id": vid, "video_state": "PUBLISHED", "description": it["text"], "access_token": ptok}, timeout=60).json()
     if not f.get("success"):
         raise RuntimeError(f"fb finish {f}")
-    return {"video_id": vid, "url": f"https://www.facebook.com/reel/{vid}"}
+    cid = post_comment(it, vid, ptok)
+    return {"video_id": vid, "url": f"https://www.facebook.com/reel/{vid}", "comment_id": cid}
 
 
 def ig_publish(it):
@@ -110,7 +138,8 @@ def ig_publish(it):
     p = requests.post(f"{GRAPH}/{igid}/media_publish", data={"creation_id": c["id"], "access_token": ptok}, timeout=60).json()
     if "id" not in p:
         raise RuntimeError(f"ig publish {p}")
-    return {"media_id": p["id"]}
+    cid = post_comment(it, p["id"], ptok)
+    return {"media_id": p["id"], "comment_id": cid}
 
 
 # ── R2 정리 ─────────────────────────────────────────────────────────
