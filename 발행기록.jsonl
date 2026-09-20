@@ -1,3 +1,15 @@
 {"ep": "ep2", "lang": "ko", "platform": "youtube", "ok": false, "error": "HTTP Error 403: Forbidden", "attempts": 1, "at": "2026-09-20T13:21:34+09:00"}
 {"ep": "ep2", "lang": "ko", "platform": "facebook", "ok": true, "video_id": "1607477427425580", "url": "https://www.facebook.com/reel/1607477427425580", "at": "2026-09-20T13:21:47+09:00"}
 {"ep": "ep2", "lang": "ko", "platform": "instagram", "ok": true, "media_id": "18073313996682860", "at": "2026-09-20T13:23:14+09:00"}
+{"ep": "ep4", "lang": "ko", "platform": "youtube", "ok": true, "url": "https://youtube.com/shorts/iE4Hsngy7GM", "video_id": "iE4Hsngy7GM", "comment_id": "Ugy-ofQh2Qorzb_2Unh4AaABAg", "at": "2026-09-20T17:08:09+09:00"}
+{"ep": "ep4_ja", "lang": "ja", "platform": "youtube", "ok": true, "url": "https://youtube.com/shorts/eecGwa2_f8A", "video_id": "eecGwa2_f8A", "comment_id": "UgwD6NThHqs2b0ytp_t4AaABAg", "at": "2026-09-20T17:08:13+09:00"}
+{"lang": "ja", "page_found": "1386246101232360", "name": "サクッとランキング歌", "at": "2026-09-20T17:08:13+09:00"}
+{"ep": "ep4_ja", "lang": "ja", "platform": "facebook", "warn": "댓글 실패 {'error': {'message': '(#200) The permission(s) pages_manage_engagement are not available. It could because either they are deprecated or need to be approved by App Review.', 'type': 'OAuthException',", "at": "2026-09-20T17:08:25+09:00"}
+{"ep": "ep4_ja", "lang": "ja", "platform": "facebook", "ok": true, "video_id": "1068970736017483", "url": "https://www.facebook.com/reel/1068970736017483", "comment_id": null, "at": "2026-09-20T17:08:25+09:00"}
+{"ep": "ep4_ja", "lang": "ja", "platform": "instagram", "warn": "댓글 실패 {'error': {'message': '(#10) Application does not have permission for this action', 'type': 'OAuthException', 'code': 10, 'fbtrace_id': 'ABCxlH0lQu4MyD7TbEbU3v7'}}", "at": "2026-09-20T17:09:12+09:00"}
+{"ep": "ep4_ja", "lang": "ja", "platform": "instagram", "ok": true, "media_id": "18110226137118492", "comment_id": null, "at": "2026-09-20T17:09:12+09:00"}
+{"ep": "ep4_en", "lang": "en", "platform": "youtube", "ok": true, "url": "https://youtube.com/shorts/V-C3S95fKkc", "video_id": "V-C3S95fKkc", "comment_id": "Ugx2w4e5Y2d8C12suW54AaABAg", "at": "2026-09-20T17:09:16+09:00"}
+{"ep": "ep4_en", "lang": "en", "platform": "facebook", "warn": "댓글 실패 {'error': {'message': '(#200) The permission(s) pages_manage_engagement are not available. It could because either they are deprecated or need to be approved by App Review.', 'type': 'OAuthException',", "at": "2026-09-20T17:09:30+09:00"}
+{"ep": "ep4_en", "lang": "en", "platform": "facebook", "ok": true, "video_id": "4616632571955463", "url": "https://www.facebook.com/reel/4616632571955463", "comment_id": null, "at": "2026-09-20T17:09:30+09:00"}
+{"ep": "ep4_en", "lang": "en", "platform": "instagram", "warn": "댓글 실패 {'error': {'message': '(#10) Application does not have permission for this action', 'type': 'OAuthException', 'code': 10, 'fbtrace_id': 'AnBsJlJBBl9F8W3tS3jpqyT'}}", "at": "2026-09-20T17:10:19+09:00"}
+{"ep": "ep4_en", "lang": "en", "platform": "instagram", "ok": true, "media_id": "18030446534675771", "comment_id": null, "at": "2026-09-20T17:10:19+09:00"}
