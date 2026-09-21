@@ -11,7 +11,7 @@ KST = dt.timezone(dt.timedelta(hours=9))
 GRAPH = "https://graph.facebook.com/v21.0"
 Q = "예약표.json"
 LOG = "발행기록.jsonl"
-PAGES = {"ko": "1399063196619050", "en": "1397363193453435"}  # ja: 아래 PAGE_NAMES로 /me/accounts에서 찾음 (2026-09-20 페이지 생김)
+PAGES = {"ko": "1399063196619050", "en": "1397363193453435", "ja": "1386246101232360"}  # ja는 2026-09-20 /me/accounts로 찾은 값 고정
 PAGE_NAMES = {"ja": "サクッと"}  # PAGES에 없는 언어는 페이지 이름 일부로 찾아 채움
 CLEANUP_H = 24
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) rankingsong-publish"}  # r2.dev가 Python-urllib UA를 403으로 막음 (2026-09-20 실측)
