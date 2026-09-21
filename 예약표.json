@@ -147,5 +147,45 @@
   "posted_at": "2026-09-20T17:08:06+09:00",
   "media_id": "18030446534675771",
   "comment_id": "18117323387289710"
+ },
+ {
+  "ep": "ep5",
+  "lang": "ko",
+  "day": "2026-09-22",
+  "slot": 1,
+  "publish_at": "2026-09-22T10:42+09:00",
+  "status": "대기",
+  "r2_key": "rankingsong/ep5_ko.mp4",
+  "video_url": "https://pub-71a067f62c754bb0b68600c1ca0758c9.r2.dev/rankingsong/ep5_ko.mp4",
+  "platform": "youtube",
+  "title": "우리 냥이 미쳐버림 고양이 장난감 TOP5 #shorts",
+  "description": "[광고]\n140번 · 프로필 링크에서 확인",
+  "comment": "[광고] 제품 링크 👉 프로필 링크\n140번"
+ },
+ {
+  "ep": "ep5",
+  "lang": "ko",
+  "day": "2026-09-22",
+  "slot": 1,
+  "publish_at": "2026-09-22T10:42+09:00",
+  "status": "대기",
+  "r2_key": "rankingsong/ep5_ko.mp4",
+  "video_url": "https://pub-71a067f62c754bb0b68600c1ca0758c9.r2.dev/rankingsong/ep5_ko.mp4",
+  "platform": "facebook",
+  "text": "우리 냥이 미쳐버림 고양이 장난감 TOP5\n\n[광고] 140번 · 프로필 링크에서 확인",
+  "comment": "[광고] 제품 링크 👉 프로필 링크\n140번"
+ },
+ {
+  "ep": "ep5",
+  "lang": "ko",
+  "day": "2026-09-22",
+  "slot": 1,
+  "publish_at": "2026-09-22T10:42+09:00",
+  "status": "대기",
+  "r2_key": "rankingsong/ep5_ko.mp4",
+  "video_url": "https://pub-71a067f62c754bb0b68600c1ca0758c9.r2.dev/rankingsong/ep5_ko.mp4",
+  "platform": "instagram",
+  "caption": "우리 냥이 미쳐버림 고양이 장난감 TOP5\n\n[광고] 140번 · 프로필 링크에서 확인\n#신박템 #꿀템 #랭킹 #쇼츠",
+  "comment": "[광고] 제품 링크 👉 프로필 링크\n140번"
  }
 ]
