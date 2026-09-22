@@ -64,6 +64,10 @@ def merge_item(base, ours, theirs):
             v, keep = o, True
         elif t == b and not o_in:
             continue
+        elif not t_in:                    # 우리는 고쳤고 저쪽은 칸을 지움 → 고친 쪽이 이긴다
+            v, keep = o, True
+        elif not o_in:                    # 저쪽은 고쳤고 우리는 칸을 지움 → 고친 쪽
+            v, keep = t, True
         else:                             # 둘 다 바꿈
             if _is_status_key(k):
                 v = o if _rank(o) > _rank(t) else t       # 더 나아간 상태. 같으면 얹는 쪽(theirs)
