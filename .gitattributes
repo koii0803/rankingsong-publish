@@ -1,0 +1,3 @@
+# 예약표는 건(ep+lang+platform) 단위로 합친다(merge_queue.py, 드라이버 이름 queue). 발행기록은 양쪽 줄을 다 잇는다(union). 2026-09-22
+예약표.json merge=queue
+발행기록.jsonl merge=union

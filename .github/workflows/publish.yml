@@ -37,6 +37,8 @@ jobs:
           git add -A
           git diff --cached --quiet && exit 0
           git commit -m "발행 실행"
+          # 예약표는 건 단위로 합친다(merge_queue.py, .gitattributes) — 글자 충돌로 결과 커밋을 잃고 같은 영상이 또 올라가는 일 방지 (2026-09-20 ko 유튜브 2번 사고, 2026-09-22 고침)
+          git config merge.queue.driver "python merge_queue.py %O %A %B"
           for i in 1 2 3; do
             git pull --rebase && git push && exit 0
             sleep 5
