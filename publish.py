@@ -4,7 +4,7 @@
 전부 끝난 편은 24시간 뒤 R2에서 지운다(R2 시크릿 있을 때).
 Secrets: YT_CLIENT_SECRET, YT_TOKEN_KO/JA/EN(토큰 json 문자열), META_USER_TOKEN,
          R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET, CLOUDFLARE_ACCOUNT_ID_2"""
-import os, sys, json, time, datetime as dt, tempfile, urllib.request
+import os, re, sys, json, time, datetime as dt, tempfile, urllib.request
 import requests
 
 KST = dt.timezone(dt.timedelta(hours=9))
@@ -156,6 +156,25 @@ def r2_delete(key):
 PUB = {"youtube": yt_publish, "facebook": fb_publish, "instagram": ig_publish}
 
 
+# 나가기 전 마지막 검문 (2026-09-27): 시험·오류 문구나 코드 조각이 올라가지 않게. 한국어·일본어·영어 세 벌이라 글자 수로는 안 본다
+_막을말 = re.compile(r"(?<![a-z])(undefined|null|nan|json|todo|lorem|assistant|claude|gpt|openai|traceback|exception)(?![a-z])"
+                   r"|test ?reply|[{}]|</?[a-z]+[^>]*>|\[object", re.I)
+
+
+def 검문(it):
+    """이 건이 올릴 글들 중 문제 있는 게 있으면 이유, 없으면 빈 칸"""
+    for 칸 in ("title", "description", "text", "caption", "comment"):
+        t = it.get(칸)
+        if t is None:
+            continue
+        m = _막을말.search(str(t))
+        if not str(t).strip() and 칸 != "comment":
+            return "%s 비었음" % 칸
+        if m:
+            return "%s 에 시험·오류 문구(%s)" % (칸, m.group(0))
+    return ""
+
+
 def main():
     q = json.load(open(Q, encoding="utf-8")) if os.path.exists(Q) else []
     t = now()
@@ -164,6 +183,12 @@ def main():
         if it.get("status") != "대기" or it.get("platform") not in PUB:
             continue
         if dt.datetime.fromisoformat(it["publish_at"]) > t:
+            continue
+        나쁨 = 검문(it)
+        if 나쁨:                          # 다시 해도 같은 글이라 바로 실패 (액션이 빨강 → 메일)
+            it.update({"status": "실패", "error": "올리기 전 검문에 걸림: " + 나쁨})
+            fail += 1
+            log(ep=it["ep"], lang=it["lang"], platform=it["platform"], ok=False, error=it["error"])
             continue
         try:
             res = PUB[it["platform"]](it)
